@@ -2,6 +2,7 @@ import Button from "../components/Button";
 import Input from "../components/Input";
 import { useState } from "react";
 import { searchFormFacade } from "../facades/search-form.facade";
+import { adjectives } from "../consts/adjectives";
 
 const SearchForm = ({ imageUrl, updateImageUrl }) => {
   let searchTerm = "";
@@ -15,10 +16,16 @@ const SearchForm = ({ imageUrl, updateImageUrl }) => {
 
   const sumbit = async () => {
     if (validForm) {
-      const result = await searchFormFacade.search(searchTerm);
+      const result = await searchFormFacade.search(calcSearchTerm());
       updateImageUrl(result);
     }
   };
+
+  function calcSearchTerm() {
+    const randomAdjective =
+      adjectives[Math.floor(Math.random() * adjectives.length - 1)];
+    return randomAdjective + " " + searchTerm;
+  }
 
   function isValidSearchTerm() {
     setValidForm(searchTerm.trim().length >= 2);
