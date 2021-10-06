@@ -3,7 +3,7 @@ import Input from "../components/Input";
 import { useState } from "react";
 import { searchFormFacade } from "../facades/search-form.facade";
 
-const SearchForm = ({ imageUrl, updateUrl }) => {
+const SearchForm = ({ imageUrl, updateImageUrl }) => {
   let searchTerm = "";
 
   const [validForm, setValidForm] = useState(false);
@@ -16,7 +16,7 @@ const SearchForm = ({ imageUrl, updateUrl }) => {
   const sumbit = async () => {
     if (validForm) {
       const result = await searchFormFacade.search(searchTerm);
-      updateUrl(result);
+      updateImageUrl(result);
     }
   };
 
@@ -35,7 +35,7 @@ const SearchForm = ({ imageUrl, updateUrl }) => {
       />
       <Button text="I feel lucky" onClick={sumbit} disabled={!validForm} />
 
-      <img src={imageUrl}></img>
+      {<img src={imageUrl}></img>}
     </div>
   );
 };

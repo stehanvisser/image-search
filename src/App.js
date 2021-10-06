@@ -3,11 +3,11 @@ import SearchForm from "./containers/SearchForm";
 import { useState } from "react";
 
 const App = () => {
-  const [imageUrl, setImageUrl] = useState("test");
+  const [imageUrl, setImageUrl] = useState("");
 
   return (
     <div className="background-container">
-      <SearchForm imageUrl={imageUrl} updateUrl={setImageUrl}></SearchForm>
+      <SearchForm imageUrl={imageUrl} updateImageUrl={setImageUrl}></SearchForm>
     </div>
   );
 };
