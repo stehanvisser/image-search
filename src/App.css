@@ -51,7 +51,7 @@ h1 {
 
 .searchbar-card {
   width: 50em;
-  height: 12em;
+  min-height: 12em;
   background: black;
   display: flex;
   flex-direction: column;
