@@ -1,6 +1,6 @@
 import PropTypes from "prop-types";
 
-const Input = ({ placeholder, type, onChange }) => {
+const Input = ({ placeholder, type, maxLength, onChange }) => {
   return (
     <>
       <input
@@ -8,6 +8,7 @@ const Input = ({ placeholder, type, onChange }) => {
         type={type}
         placeholder={placeholder}
         onChange={onChange}
+        maxLength={maxLength}
       ></input>
     </>
   );
@@ -16,10 +17,12 @@ const Input = ({ placeholder, type, onChange }) => {
 Input.defaultProps = {
   placeholder: "",
   type: "text",
+  maxLength: 64,
 };
 
 Input.propTypes = {
   placeholder: PropTypes.string,
+  maxLength: PropTypes.number,
   type: PropTypes.oneOf([
     "tel",
     "text",
