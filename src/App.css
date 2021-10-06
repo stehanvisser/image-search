@@ -51,7 +51,7 @@ h1 {
 
 .searchbar-card {
   width: 50em;
-  height: 30em;
+  height: 12em;
   background: black;
   display: flex;
   flex-direction: column;
@@ -59,7 +59,32 @@ h1 {
   margin-bottom: auto;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.5);
   padding: 20px;
-  justify-content: center;
+}
+
+@keyframes flyIn {
+  0% {
+    opacity: 0;
+    width: 0em;
+    height: 5em;
+  }
+  50% {
+    opacity: 0.5;
+    width: 25em;
+    height: 10em;
+  }
+  100% {
+    opacity: 1;
+    width: 50em;
+    height: 12em;
+  }
+}
+
+@media only screen and (min-width: 740px) {
+  .searchbar-card {
+    animation-name: flyIn;
+    animation-duration: 0.4s;
+    animation-timing-function: linear;
+  }
 }
 
 @media only screen and (max-width: 740px) {
