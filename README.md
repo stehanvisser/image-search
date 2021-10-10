@@ -9,13 +9,13 @@ If you already have a GOOGLE API KEY:
 
 If you do not have a GOOGLE API KEY you can create:
 
-1. Navigate to https://console.cloud.google.com/ and either login or create an google account.
+1. Navigate to https://console.cloud.google.com/ and either log in or create a google account.
 2. On the side navigation go to Credentials. To navigate to the Credentials page. https://console.cloud.google.com/apis/credentials
 3. On the Credentials page, click Create credentials > API key. The API key created dialog displays your newly created API key.
 4. Click Close. The new API key is listed on the Credentials page under API keys. (Remember to restrict the API key before using it in production.)
 
 Notes:
-Ensure your Custom api services is active and is using the correct key.
+Ensure your Custom API services are active and are using the correct key.
 You will have to create Create credentials for your application before the key will be active.
 
 API introduction can be found at https://developers.google.com/custom-search/v1/introduction.
