@@ -4,12 +4,14 @@ import { useState } from "react";
 import { searchFormFacade } from "../facades/search-form.facade";
 import { adjectives } from "../consts/adjectives";
 import Loader from "../components/Loader";
+import ImageCard from "../components/ImageCard";
 
 const SearchForm = ({ imageUrl, updateImageUrl }) => {
   let searchTerm = "";
 
   const [validForm, setValidForm] = useState(false);
   const [imageLoading, setImageLoading] = useState(false);
+  const [showSearchView, setShowSearchView] = useState(true);
 
   const updateSearchTerm = (event) => {
     searchTerm = event.target.value;
@@ -21,6 +23,7 @@ const SearchForm = ({ imageUrl, updateImageUrl }) => {
       setImageLoading(true);
       const result = await searchFormFacade.search(calcSearchTerm());
       updateImageUrl(result);
+      changeShowSearchViewState();
       setImageLoading(false);
     }
   };
@@ -35,22 +38,38 @@ const SearchForm = ({ imageUrl, updateImageUrl }) => {
     setValidForm(searchTerm.trim().length >= 2);
   }
 
-  return (
-    <article className="searchbar-card">
-      <h1 style={{ margin: "0px 0px 20px 0px" }}>Search</h1>
-      <Input
-        placeholder="Favourite Animal"
-        type="text"
-        onChange={updateSearchTerm}
-        maxLength={20}
-      />
-      <Button text="I feel lucky" onClick={sumbit} disabled={!validForm} />
+  function changeShowSearchViewState() {
+    setShowSearchView(!showSearchView);
+  }
 
-      {<img src={imageUrl} alt={searchTerm}></img>}
-      <div className="loader-container">
-        <Loader isLoading={imageLoading}></Loader>
-      </div>
-    </article>
+  return (
+    <>
+      {showSearchView && (
+        <section className="searchbar-card">
+          <h1>Search</h1>
+          <Input
+            placeholder="Favourite Animal"
+            type="text"
+            onChange={updateSearchTerm}
+            maxLength={20}
+          />
+          <Button text="I feel lucky" onClick={sumbit} disabled={!validForm} />
+
+          <div className="loader-container">
+            <Loader isLoading={imageLoading}></Loader>
+          </div>
+        </section>
+      )}
+      {imageUrl && !showSearchView && (
+        <section className="iamge-container">
+          <ImageCard
+            imageUrl={imageUrl}
+            searchTerm={searchTerm}
+            newSearch={changeShowSearchViewState}
+          ></ImageCard>
+        </section>
+      )}
+    </>
   );
 };
 

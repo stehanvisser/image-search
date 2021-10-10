@@ -7,7 +7,7 @@ export class SearchFormFacade {
       if (result?.items?.length > 0) {
         return result?.items[0]?.link;
       } else {
-        return "";
+        return "/assets/images/image-not-found.jpg";
       }
     } catch (e) {
       console.log("ERROR", e);
