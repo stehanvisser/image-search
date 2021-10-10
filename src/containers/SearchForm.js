@@ -4,7 +4,7 @@ import { useState } from "react";
 import { searchFormFacade } from "../facades/search-form.facade";
 import { adjectives } from "../consts/adjectives";
 import Loader from "../components/Loader";
-import ImageCard from "../components/ImageCard";
+import ImageCard from "./ImageCard";
 
 const SearchForm = ({ imageUrl, updateImageUrl }) => {
   const [validForm, setValidForm] = useState(false);
@@ -21,7 +21,6 @@ const SearchForm = ({ imageUrl, updateImageUrl }) => {
     if (validForm) {
       setImageLoading(true);
       const result = await searchFormFacade.search(calcSearchTerm());
-
       updateImageUrl(result);
       changeShowSearchViewState();
       setImageLoading(false);
@@ -62,7 +61,7 @@ const SearchForm = ({ imageUrl, updateImageUrl }) => {
         </section>
       )}
       {imageUrl && !showSearchView && (
-        <section className="iamge-container">
+        <section className="image-container">
           <ImageCard
             imageUrl={imageUrl}
             searchTerm={searchTerm}

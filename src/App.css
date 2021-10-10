@@ -1,5 +1,6 @@
 :root {
   --primary-color: #00a0b0;
+  --max-image-height: 800px;
 }
 
 .background-container {
@@ -66,7 +67,7 @@ h1 {
   padding: 20px;
 }
 
-.iamge-container {
+.image-container {
   align-self: center;
 }
 
@@ -84,6 +85,7 @@ h1 {
 .img {
   width: 100%;
   margin-bottom: 20px;
+  max-height: var(--max-image-height);
 }
 
 @keyframes fadeIn {
@@ -136,5 +138,9 @@ h1 {
   .image-card {
     height: 100vh;
     width: 100vw;
+  }
+
+  .image-container {
+    height: 100vh;
   }
 }
