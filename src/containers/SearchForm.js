@@ -3,11 +3,13 @@ import Input from "../components/Input";
 import { useState } from "react";
 import { searchFormFacade } from "../facades/search-form.facade";
 import { adjectives } from "../consts/adjectives";
+import Loader from "../components/Loader";
 
 const SearchForm = ({ imageUrl, updateImageUrl }) => {
   let searchTerm = "";
 
   const [validForm, setValidForm] = useState(false);
+  const [imageLoading, setImageLoading] = useState(false);
 
   const updateSearchTerm = (event) => {
     searchTerm = event.target.value;
@@ -16,8 +18,10 @@ const SearchForm = ({ imageUrl, updateImageUrl }) => {
 
   const sumbit = async () => {
     if (validForm) {
+      setImageLoading(true);
       const result = await searchFormFacade.search(calcSearchTerm());
       updateImageUrl(result);
+      setImageLoading(false);
     }
   };
 
@@ -32,7 +36,7 @@ const SearchForm = ({ imageUrl, updateImageUrl }) => {
   }
 
   return (
-    <div className="searchbar-card">
+    <article className="searchbar-card">
       <h1 style={{ margin: "0px 0px 20px 0px" }}>Search</h1>
       <Input
         placeholder="Favourite Animal"
@@ -42,8 +46,11 @@ const SearchForm = ({ imageUrl, updateImageUrl }) => {
       />
       <Button text="I feel lucky" onClick={sumbit} disabled={!validForm} />
 
-      {<img src={imageUrl}></img>}
-    </div>
+      {<img src={imageUrl} alt={searchTerm}></img>}
+      <div className="loader-container">
+        <Loader isLoading={imageLoading}></Loader>
+      </div>
+    </article>
   );
 };
 
