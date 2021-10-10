@@ -7,14 +7,13 @@ import Loader from "../components/Loader";
 import ImageCard from "../components/ImageCard";
 
 const SearchForm = ({ imageUrl, updateImageUrl }) => {
-  let searchTerm = "";
-
   const [validForm, setValidForm] = useState(false);
   const [imageLoading, setImageLoading] = useState(false);
   const [showSearchView, setShowSearchView] = useState(true);
+  const [searchTerm, setSearchTerm] = useState("");
 
   const updateSearchTerm = (event) => {
-    searchTerm = event.target.value;
+    setSearchTerm(event.target.value);
     isValidSearchTerm();
   };
 
@@ -22,6 +21,7 @@ const SearchForm = ({ imageUrl, updateImageUrl }) => {
     if (validForm) {
       setImageLoading(true);
       const result = await searchFormFacade.search(calcSearchTerm());
+
       updateImageUrl(result);
       changeShowSearchViewState();
       setImageLoading(false);
@@ -31,6 +31,7 @@ const SearchForm = ({ imageUrl, updateImageUrl }) => {
   function calcSearchTerm() {
     const randomAdjective =
       adjectives[Math.floor(Math.random() * adjectives.length - 1)];
+    setSearchTerm(randomAdjective + " " + searchTerm);
     return randomAdjective + " " + searchTerm;
   }
 
